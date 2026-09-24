@@ -1,5 +1,5 @@
 /* =========================================
-   HackShot — Hacktoberfest Aim Trainer
+   HackShot — Browser Aim Trainer
    Design System & Styles
    ========================================= */
 
@@ -16,7 +16,7 @@
   --c-border:    rgba(255,255,255,0.10);
   --c-border2:   rgba(255,255,255,0.18);
 
-  /* Hacktoberfest palette */
+  /* Color palette */
   --c-orange:    #ff6b35;
   --c-orange2:   #ff8c42;
   --c-purple:    #9b59b6;
@@ -115,7 +115,7 @@ body {
   max-height: 100vh;
 }
 
-.badge-hacktoberfest {
+.badge-open-source {
   background: linear-gradient(135deg, var(--c-orange), var(--c-purple));
   padding: 6px 20px;
   border-radius: var(--radius-full);

@@ -1,13 +1,13 @@
-# 🎯 HackShot — Hacktoberfest Aim Trainer
+# 🎯 HackShot — Browser Aim Trainer
 
 <div align="center">
 
-![HackShot Banner](https://img.shields.io/badge/🎃%20Hacktoberfest-2026-ff6b35?style=for-the-badge&labelColor=0a0a0f)
 ![License](https://img.shields.io/badge/License-MIT-9b59b6?style=for-the-badge)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-00d4aa?style=for-the-badge)
 ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-e91e8c?style=for-the-badge)
+![Vanilla JS](https://img.shields.io/badge/Vanilla-JS-ff6b35?style=for-the-badge)
 
-**A fast-paced browser aim trainer game, built for Hacktoberfest open-source contributions.**
+**A fast-paced, open-source browser aim trainer. Test your reflexes, improve your aim, and climb the leaderboard.**
 
 [🎮 Play Now](#getting-started) · [🐛 Report Bug](../../issues) · [✨ Request Feature](../../issues) · [🏆 Leaderboard](#contribute)
 
@@ -34,8 +34,8 @@
 No build step needed! Just open `index.html` in your browser:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hacktoberfest-aim-trainer.git
-cd hacktoberfest-aim-trainer
+git clone https://github.com/YOUR_USERNAME/hackshot.git
+cd hackshot
 # Open index.html in your browser, OR:
 npx serve .
 ```
@@ -61,26 +61,26 @@ Then visit `http://localhost:8080`.
 
 ### Game Modes
 
-| Mode       | Duration | Description                          |
-|------------|----------|--------------------------------------|
-| 🎯 Classic  | 30s      | Standard targets, beginner friendly  |
-| 🔥 Precision| 45s      | Targets shrink over time             |
-| ⚡ Frenzy   | 60s      | Fast spawns, maximum chaos           |
+| Mode        | Duration | Description                         |
+|-------------|----------|-------------------------------------|
+| 🎯 Classic  | 30s      | Standard targets, beginner friendly |
+| 🔥 Precision | 45s      | Targets shrink over time            |
+| ⚡ Frenzy   | 60s      | Fast spawns, maximum chaos          |
 
 ### Target Types
 
-| Target   | Points | Description                      |
-|----------|--------|----------------------------------|
-| 🔴 Normal | 10     | Standard orange target            |
-| 🟣 Bonus  | 20     | Purple `2x` multiplier target     |
-| 🟡 Speed  | 8      | Yellow fast target                |
+| Target    | Points | Description                   |
+|-----------|--------|-------------------------------|
+| 🔴 Normal | 10     | Standard orange target        |
+| 🟣 Bonus  | 20     | Purple `2x` multiplier target |
+| 🟡 Speed  | 8      | Yellow fast target            |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-hacktoberfest-aim-trainer/
+hackshot/
 ├── index.html          # Main entry point
 ├── css/
 │   └── style.css       # All styles (dark theme, animations)
@@ -99,9 +99,7 @@ hacktoberfest-aim-trainer/
 
 ## 🤝 Contributing
 
-This project is **Hacktoberfest-friendly**! All contributions count toward your Hacktoberfest goal.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+Contributions of all kinds are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 ### Quick Start for Contributors
 
@@ -117,7 +115,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
 
 Look for issues labeled:
 - `good first issue` — Perfect for newcomers
-- `hacktoberfest` — Specifically tagged for the event
 - `enhancement` — New feature ideas
 
 ### Ideas for Contributions
@@ -135,11 +132,11 @@ Look for issues labeled:
 
 ## ⌨️ Keyboard Shortcuts
 
-| Key       | Action              |
-|-----------|---------------------|
-| `P`       | Pause / Resume      |
-| `Escape`  | Pause / Resume      |
-| `R`       | Restart (when paused/results) |
+| Key      | Action                       |
+|----------|------------------------------|
+| `P`      | Pause / Resume               |
+| `Escape` | Pause / Resume               |
+| `R`      | Restart (when paused/results)|
 
 ---
 
@@ -151,7 +148,7 @@ MIT © 2026 — See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Made with ❤️ for **Hacktoberfest 2026**
+Made with ❤️ — Open Source
 
 ⭐ Star this repo if you found it useful!
 

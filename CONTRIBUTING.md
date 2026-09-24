@@ -2,8 +2,6 @@
 
 Thank you for your interest in contributing to **HackShot**! This guide will help you get started.
 
-This project participates in **Hacktoberfest** — contributions here count toward your Hacktoberfest goal! 🎃
-
 ---
 
 ## 📋 Code of Conduct
@@ -26,8 +24,8 @@ Be kind, inclusive, and respectful. We welcome contributors of all skill levels.
 # 1. Fork the repository on GitHub
 
 # 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/hacktoberfest-aim-trainer.git
-cd hacktoberfest-aim-trainer
+git clone https://github.com/YOUR_USERNAME/hackshot.git
+cd hackshot
 
 # 3. Open in VS Code (optional)
 code .
@@ -54,14 +52,14 @@ git checkout -b docs/update-readme
 
 ### Branch Prefixes
 
-| Prefix   | Purpose                              |
-|----------|--------------------------------------|
-| `feat/`  | New features                         |
-| `fix/`   | Bug fixes                            |
-| `style/` | CSS/visual changes                   |
-| `docs/`  | Documentation only                   |
+| Prefix      | Purpose                                 |
+|-------------|-----------------------------------------|
+| `feat/`     | New features                            |
+| `fix/`      | Bug fixes                               |
+| `style/`    | CSS/visual changes                      |
+| `docs/`     | Documentation only                      |
 | `refactor/` | Code restructuring (no behavior change) |
-| `perf/`  | Performance improvements             |
+| `perf/`     | Performance improvements                |
 
 ---
 
@@ -162,4 +160,4 @@ Open a [GitHub Discussion](../../discussions) or file an [Issue](../../issues). 
 
 ---
 
-Made with ❤️ for **Hacktoberfest 2026** 🎃
+Made with ❤️ — Open Source

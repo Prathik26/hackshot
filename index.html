@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎯 HackShot — Hacktoberfest Aim Trainer</title>
+  <meta name="description" content="A fast-paced aim trainer game built for Hacktoberfest. Test your reflexes, improve your aim, and climb the leaderboard!" />
+  <meta name="keywords" content="aim trainer, hacktoberfest, browser game, reflex game, open source" />
+  <meta property="og:title" content="HackShot — Hacktoberfest Aim Trainer" />
+  <meta property="og:description" content="Test your reflexes in this Hacktoberfest-themed aim trainer game!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Particle background -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Main App -->
+  <div id="app">
+
+    <!-- SCREEN: Home -->
+    <section id="screen-home" class="screen active">
+      <div class="home-content">
+        <div class="badge-hacktoberfest">🎃 Hacktoberfest 2026</div>
+        <h1 class="game-title">
+          Hack<span class="accent">Shot</span>
+        </h1>
+        <p class="game-subtitle">The ultimate aim trainer for open-source warriors</p>
+
+        <div class="mode-cards">
+          <div class="mode-card" id="btn-mode-classic" data-mode="classic">
+            <div class="mode-icon">🎯</div>
+            <h3>Classic</h3>
+            <p>30 seconds. Hit as many targets as you can.</p>
+            <span class="mode-tag">Beginner Friendly</span>
+          </div>
+          <div class="mode-card featured" id="btn-mode-precision" data-mode="precision">
+            <div class="mode-icon">🔥</div>
+            <h3>Precision</h3>
+            <p>Targets shrink over time. Accuracy is everything.</p>
+            <span class="mode-tag">⭐ Featured</span>
+          </div>
+          <div class="mode-card" id="btn-mode-frenzy" data-mode="frenzy">
+            <div class="mode-icon">⚡</div>
+            <h3>Frenzy</h3>
+            <p>Rapid fire chaos. 60 seconds of pure speed.</p>
+            <span class="mode-tag">Expert</span>
+          </div>
+        </div>
+
+        <div class="home-actions">
+          <button class="btn-primary" id="btn-start">START GAME</button>
+          <button class="btn-secondary" id="btn-leaderboard-home">🏆 Leaderboard</button>
+          <button class="btn-ghost" id="btn-settings">⚙ Settings</button>
+        </div>
+
+        <div class="stats-preview" id="personal-best-display">
+          <span class="stat-item">🏅 Best: <strong id="home-best">—</strong></span>
+          <span class="stat-item">🎯 Accuracy: <strong id="home-accuracy">—</strong></span>
+          <span class="stat-item">🔥 Games: <strong id="home-games">0</strong></span>
+        </div>
+
+        <a class="github-link" href="https://github.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.936.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          Contribute on GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- SCREEN: Countdown -->
+    <section id="screen-countdown" class="screen">
+      <div class="countdown-content">
+        <p class="countdown-label">Get ready...</p>
+        <div id="countdown-number" class="countdown-number">3</div>
+        <p class="countdown-mode" id="countdown-mode-name">Classic Mode</p>
+      </div>
+    </section>
+
+    <!-- SCREEN: Game -->
+    <section id="screen-game" class="screen">
+      <!-- HUD -->
+      <div class="game-hud">
+        <div class="hud-item" id="hud-score-wrap">
+          <span class="hud-label">SCORE</span>
+          <span class="hud-value" id="hud-score">0</span>
+        </div>
+        <div class="hud-timer-wrap">
+          <div class="hud-timer-bar-bg">
+            <div class="hud-timer-bar" id="hud-timer-bar"></div>
+          </div>
+          <span class="hud-timer-value" id="hud-timer">30</span>
+        </div>
+        <div class="hud-item right" id="hud-accuracy-wrap">
+          <span class="hud-label">ACCURACY</span>
+          <span class="hud-value" id="hud-accuracy">100%</span>
+        </div>
+      </div>
+
+      <!-- Game Arena -->
+      <div id="game-arena">
+        <!-- Targets injected by JS -->
+        <!-- Miss click effect -->
+        <div class="miss-indicator" id="miss-indicator">MISS!</div>
+      </div>
+
+      <!-- Streak indicator -->
+      <div class="streak-badge" id="streak-badge">
+        <span id="streak-count">0</span>🔥
+      </div>
+
+      <!-- Pause button -->
+      <button class="btn-pause" id="btn-pause" title="Pause">⏸</button>
+    </section>
+
+    <!-- SCREEN: Pause -->
+    <section id="screen-pause" class="screen overlay-screen">
+      <div class="overlay-card">
+        <h2>⏸ Paused</h2>
+        <div class="pause-stats">
+          <div class="stat-row"><span>Score so far</span><strong id="pause-score">0</strong></div>
+          <div class="stat-row"><span>Accuracy</span><strong id="pause-accuracy">0%</strong></div>
+          <div class="stat-row"><span>Streak</span><strong id="pause-streak">0</strong></div>
+        </div>
+        <div class="overlay-actions">
+          <button class="btn-primary" id="btn-resume">▶ Resume</button>
+          <button class="btn-secondary" id="btn-restart-pause">↩ Restart</button>
+          <button class="btn-ghost" id="btn-quit-pause">✕ Quit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN: Results -->
+    <section id="screen-results" class="screen">
+      <div class="results-content">
+        <div class="results-header">
+          <div class="results-medal" id="results-medal">🥇</div>
+          <h2 class="results-title" id="results-title">Great Shot!</h2>
+          <p class="results-mode-name" id="results-mode-display">Classic Mode</p>
+        </div>
+
+        <div class="results-grid">
+          <div class="result-card">
+            <span class="result-icon">🎯</span>
+            <span class="result-label">Score</span>
+            <span class="result-value" id="result-score">0</span>
+          </div>
+          <div class="result-card">
+            <span class="result-icon">✅</span>
+            <span class="result-label">Hits</span>
+            <span class="result-value" id="result-hits">0</span>
+          </div>
+          <div class="result-card">
+            <span class="result-icon">❌</span>
+            <span class="result-label">Misses</span>
+            <span class="result-value" id="result-misses">0</span>
+          </div>
+          <div class="result-card highlight">
+            <span class="result-icon">🎯</span>
+            <span class="result-label">Accuracy</span>
+            <span class="result-value" id="result-accuracy">0%</span>
+          </div>
+          <div class="result-card">
+            <span class="result-icon">🔥</span>
+            <span class="result-label">Best Streak</span>
+            <span class="result-value" id="result-streak">0</span>
+          </div>
+          <div class="result-card">
+            <span class="result-icon">⚡</span>
+            <span class="result-label">Avg React Time</span>
+            <span class="result-value" id="result-reaction">0ms</span>
+          </div>
+        </div>
+
+        <div class="personal-best-banner" id="new-best-banner">
+          🏆 New Personal Best!
+        </div>
+
+        <div class="results-actions">
+          <button class="btn-primary" id="btn-play-again">🔄 Play Again</button>
+          <button class="btn-secondary" id="btn-leaderboard-results">🏆 Leaderboard</button>
+          <button class="btn-ghost" id="btn-home-results">🏠 Home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN: Leaderboard -->
+    <section id="screen-leaderboard" class="screen">
+      <div class="leaderboard-content">
+        <button class="btn-back" id="btn-back-leaderboard">← Back</button>
+        <h2 class="section-title">🏆 Leaderboard</h2>
+        <div class="leaderboard-tabs">
+          <button class="tab-btn active" id="tab-classic">Classic</button>
+          <button class="tab-btn" id="tab-precision">Precision</button>
+          <button class="tab-btn" id="tab-frenzy">Frenzy</button>
+        </div>
+        <div class="leaderboard-table" id="leaderboard-table">
+          <!-- Rows injected by JS -->
+        </div>
+        <div class="leaderboard-empty" id="leaderboard-empty">
+          <p>No scores yet. Be the first! 🎯</p>
+        </div>
+        <button class="btn-danger" id="btn-clear-scores">🗑 Clear Scores</button>
+      </div>
+    </section>
+
+    <!-- SCREEN: Settings -->
+    <section id="screen-settings" class="screen">
+      <div class="settings-content">
+        <button class="btn-back" id="btn-back-settings">← Back</button>
+        <h2 class="section-title">⚙ Settings</h2>
+
+        <div class="settings-group">
+          <h3>Audio</h3>
+          <label class="toggle-row">
+            <span>Sound Effects</span>
+            <input type="checkbox" id="setting-sfx" checked />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <h3>Visuals</h3>
+          <label class="toggle-row">
+            <span>Particle Effects</span>
+            <input type="checkbox" id="setting-particles" checked />
+            <span class="toggle-track"></span>
+          </label>
+          <label class="toggle-row">
+            <span>Screen Shake</span>
+            <input type="checkbox" id="setting-shake" checked />
+            <span class="toggle-track"></span>
+          </label>
+          <label class="toggle-row">
+            <span>Show Crosshair</span>
+            <input type="checkbox" id="setting-crosshair" checked />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <h3>Difficulty</h3>
+          <label class="select-row">
+            <span>Target Speed</span>
+            <select id="setting-speed">
+              <option value="slow">Slow</option>
+              <option value="normal" selected>Normal</option>
+              <option value="fast">Fast</option>
+            </select>
+          </label>
+          <label class="select-row">
+            <span>Target Size</span>
+            <select id="setting-size">
+              <option value="large">Large</option>
+              <option value="normal" selected>Normal</option>
+              <option value="small">Small</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="settings-group">
+          <h3>Player</h3>
+          <label class="input-row">
+            <span>Your Name</span>
+            <input type="text" id="setting-name" placeholder="Anonymous" maxlength="20" />
+          </label>
+        </div>
+
+        <button class="btn-primary" id="btn-save-settings">💾 Save Settings</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Custom cursor crosshair -->
+  <div id="crosshair" class="crosshair">
+    <div class="ch-line ch-top"></div>
+    <div class="ch-line ch-bottom"></div>
+    <div class="ch-line ch-left"></div>
+    <div class="ch-line ch-right"></div>
+    <div class="ch-dot"></div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div id="toast-container"></div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

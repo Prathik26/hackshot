@@ -1,0 +1,27 @@
+# .gitignore for HackShot
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Local environment
+.env
+.env.local
+
+# Node (if ever added)
+node_modules/
+npm-debug.log*
+
+# Build output (if ever added)
+dist/
+build/

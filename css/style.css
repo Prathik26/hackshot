@@ -54,7 +54,6 @@ body {
   color: var(--c-text);
   min-height: 100vh;
   overflow: hidden;
-  cursor: none;
   user-select: none;
 }
 

@@ -138,7 +138,7 @@ const Game = (() => {
     const target = { id, type, x, y, size, el, expiryTimer, spawnTime: performance.now() };
     state.targets.push(target);
 
-    el.addEventListener('click', (e) => {
+    el.addEventListener('mousedown', (e) => {
       e.stopPropagation();
       onTargetHit(id, e);
     });
@@ -283,7 +283,7 @@ const Game = (() => {
 
     // Bind arena miss click
     if (arena) {
-      arena.onclick = (e) => {
+      arena.onmousedown = (e) => {
         if (e.target === arena || e.target.id === 'miss-indicator' || e.target.id === 'miss-flash') {
           onArenaMiss();
           showMissIndicator(e.clientX, e.clientY);
